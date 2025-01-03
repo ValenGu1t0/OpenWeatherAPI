@@ -9,7 +9,9 @@ form.addEventListener("submit", (event) => {
 
     const ciudad = input.value.trim();  // Quitamos espacios en blanco
     
+    // Si ciudad es un input válido, chequeamos si existe en la API
     if (ciudad) { fetchClima(ciudad); } else { alert("Ingrese un nombre de ciudad"); }
+
 });
 
 
@@ -20,8 +22,8 @@ function fetchClima(ciudad) {
     .then((response) => response.json())
         
     .then((data) => funTarjetaClima(data))
-
 }
+
 
 function funTarjetaClima(data) {
 
@@ -35,50 +37,45 @@ function funTarjetaClima(data) {
     tarjetaClima.appendChild(cuadro_clima);
 
 
-    // Seccion icono del clima - es un asco la lógica pero tengo errores al obtenerlo de la API
-    let imgWeather; 
+// Sección icono del clima
+let imgWeather;
 
-    if (data.weather[0].description === "clear sky") {
+// Mapa de iconos del clima
+const weatherIcons = {
 
-        imgWeather = "img/soleado.png";
+    "clear sky": "img/soleado.png",
+    "few clouds": "img/dispersas.png",
+    "scattered clouds": "img/dispersas.png",
+    "broken clouds": "img/nublado.png",
+    "overcast clouds": "img/nublado.png",
+    "light rain": "img/lluvia.png",
+    "moderate rain": "img/lluvia.png",
+    "shower rain": "img/nublado.png",
+    "rain": "img/lluvia.png",
+    "thunderstorm": "img/tormenta.png",
+    "snow": "",
+    "mist": ""
+};
 
-    } else if 
-    (data.weather[0].description === "few clouds" || data.weather[0].description === "scattered clouds") 
-    {
-        imgWeather = "img/dispersas.png";
+// En cada llamada, se asigna el icono basado en la descripción del clima dada por la API
+imgWeather = weatherIcons[data.weather[0].description] || "img/default.png"; // Default si no coincide
 
-    } else if (data.weather[0].description === "broken clouds" || data.weather[0].description === "shower rain" || data.weather[0].description === "shower rain")
-    {
-        imgWeather = "img/nublado.png";
 
-    } else if (data.weather[0].description === "rain")
-    {
-        imgWeather = "img/lluvia.png";
+    // Insertamos datos del clima obtenidos por la API
 
-    } else if (data.weather[0].description === "thunderstorm") {
-
-        imgWeather = "img/tormenta.png";
-    }
-/* 
-snow
-mist 
-*/
-
-    // Inserto datos del clima obtenidos por la API
     cuadro_clima.innerHTML = 
     `
         <div class="ciudad-clima">
-            <p class="nombre-clima">${data.name}</p>
+            <p class="nombre-clima">${data.name}, ${data.sys.country}</p>
             <img class="icono-clima" src="${imgWeather}" alt="icono del clima">
         </div>
         <div class="datos-clima">
-            <p class="tipo-clima">Tiempo: ${data.weather[0].description}</p>
-            <p class="temp-clima">Temperatura: ${(data.main.temp - 273.15).toFixed(1)} °C</p>
-            <p class="hum-clima">Humedad: ${data.main.humidity}%</p>
+            <p class="tipo-clima">Climate: ${data.weather[0].description}</p>
+            <p class="temp-clima">Temperature: ${(data.main.temp - 273.15).toFixed(1)} °C</p>
+            <p class="hum-clima">Humidity: ${data.main.humidity}%</p>
         </div>
     `;
 
-    
 }
 
 

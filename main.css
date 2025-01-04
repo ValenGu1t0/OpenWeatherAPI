@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -92,8 +91,9 @@ form {
 .cuadro-clima {
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    gap: 1rem;
 }
 
 .ciudad-clima {
@@ -109,11 +109,16 @@ form {
 
 .datos-clima {
 
+    padding: 1rem;
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
+
     font-weight: 600;
+    border: 2px solid #0c4566;
+    border-radius: 10px;
 }
 
 
@@ -125,7 +130,6 @@ form {
 @media only screen and (min-width: 541px ) and (max-width: 768px) {
 
     .seccion-clima { width: 90%; }
-    .datos-clima { align-items: flex-start; }
 }
 
 /* ///////////////////// CELULAR ///////////////////// */
@@ -135,7 +139,6 @@ form {
     .nav-botones { display: none; }
 
     .seccion-clima { width: 90%; }
-    .datos-clima { align-items: flex-start; }
 }
 
 /* ///////////////////// CELU-S  ///////////////////// */
@@ -144,7 +147,7 @@ form {
     nav { justify-content: center; }
     .nav-botones { display: none; }
 
-    .seccion-clima { width: 90%; padding: 1.5rem; }
+    .seccion-clima { width: 90%; padding: 1.5rem; margin-top: 2rem; }
     .ciudad-clima { font-weight: 600; }
-    .datos-clima { align-items: flex-start; font-size: small; }
+    .datos-clima { font-size: small; }
 }

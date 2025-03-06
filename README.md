@@ -1,2 +1,3 @@
 # OpenWeatherAPI
-Proyecto práctico donde uso la API de https://openweathermap.org para desarrollar una app de clima simple. La finalidad de la misma fue practicar el consumo de APIs a través de fetch y integrarlas a una app web, además de incorporar error handling simple para mejorar la experiencia de usuario a la hora de trabajar de forma asincrónica. 
+
+A practical project where I used the API from https://openweathermap.org to develop a simple weather app. The goal of the project was to complete a coding challenge that tests API consumption through fetchAPI and the integration of data into the web page. Additionally, I worked with error handling and ensured the web app functions asynchronously.
